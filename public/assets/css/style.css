@@ -1,0 +1,331 @@
+body{
+  background-image: url('../images/01.jpg');
+  color: rgb(58, 58, 58);
+}
+.emp_list{
+  background-color: #ffffff5e
+}
+a.chosen-single {
+ color: rgb(58, 58, 58);
+}
+.emp_col {
+  clear: both;
+  display: block;
+  line-height: 1.2em;
+  font-size: 0.8em;
+  padding: 3px;
+  margin: 5px;
+  height: 3em;
+}
+.emp_col_green {
+  background-color: rgb(138, 201, 102)
+}
+.emp_col_blue {
+  background-color: rgb(100, 128, 255)
+}
+.emp_col_gray {
+  background-color: rgb(202, 202, 202)
+}
+
+.modal-body {
+  background-image: url('../images/04.jpg');
+  color: rgba(255, 255, 255, 0.671);
+}
+.modal-footer{
+  padding:5px;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+}
+.cust_log_block{
+  border-radius: 8px;
+  background: #e7e7e79a;
+  margin-top: 30px;
+  padding: 20px 20px 20px 20px;
+}
+button {
+  margin: 10px;
+}
+hr{
+  margin-top:0;
+}
+.label_top {
+  font-family: 'Indie+Flower';
+  font-size: 2.5em;
+  color: white;
+  margin:50px 5px 25px 5px; 
+}
+.label_top_1 {
+  font-family: 'Indie+Flower';
+  font-size: 1.5em;
+  color: rgb(58, 58, 58);
+  margin-top: 3em;
+}
+.modal-title {
+  font-family: 'Indie+Flower';
+  font-size: 1.5em;
+  color: rgb(212, 212, 212);
+}
+.label_top_1:nth-child(1) {
+  margin-top: 0;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.create-update-form {
+  padding: 5px;
+  margin: 5px;
+  background: aqua;
+}
+table{
+  table-layout: fixed; 
+  width: 100%;
+}
+.cust_in{
+  margin-top: 1px;
+  font-size: 0.8em;
+  line-height: 1.2em;
+  overflow-x:auto
+}
+.in_service_table th, .in_service_table td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.log_book_table th, .log_book_table td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.del_table th, .del_table td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.form-group {
+  margin-bottom: 5px;
+}
+.form-control {
+  margin-bottom: 5px;
+  height: 1.8em;
+}
+.table_number15 {
+  width: 15%;
+}
+.table_number1 {
+  width: 10%;
+}
+.table_number2 {
+  width: 20%;
+}
+.log_number1 {
+  width: 8%;
+}
+.log_number2 {
+  width: 13%;
+}
+.log_number3 {
+  width: 20%;
+}
+.del_number1 {
+  width: 10%;
+}
+.del_number2 {
+  width: 60%;
+}
+.del_number3 {
+  width: 30%;
+}
+.number_in_table{
+  width: 110%;
+}
+.emp_photo_block{
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  padding:0;
+  border-radius: 50%;  
+  position: relative;
+  overflow: hidden;
+  float: left;
+  justify-content: center;
+  box-shadow:
+    0 0 4px 1px rgba(0,0,0,0.2),
+    0 3px 2px rgba(0,0,0,0.2);       
+}
+.turn_block{
+  width: 40px;
+  height: 40px;
+  font-size: 15px;
+  padding: 11px;
+  text-align: center;
+  border-radius: 50%;
+  margin: 5px;
+  position: relative;
+  overflow: hidden;
+  float: left;
+  justify-content: center;
+  background-color: rgb(228, 228, 228);
+  box-shadow:
+    0 0 4px 1px rgba(0,0,0,0.2),
+    0 3px 2px rgba(0,0,0,0.2);      
+}
+.emp_photo {
+  object-fit: cover;
+  border-radius: 50%;
+  border:solid 3px rgb(228, 228, 228);
+  height: 100%;
+  width: 100%; 
+}
+.complete, .delete, .recover, .addService, .deleteService, .completeService {
+  height: 1.5em;
+  margin: 0;
+  padding-top:0;
+  font-size: 1.3em;
+}
+
+p {
+  margin:0;
+}
+.busy_status {
+  left:10px;
+  top: 5px;
+  position: relative;
+  float:left;
+  z-index: 2;
+  font-size: 1.6em;
+  color:#2368a1;
+}
+.disabled_status {
+  left:10px;
+  top: 5px;
+  position: relative;
+  float:left;
+  z-index: 2;
+  font-size: 1.6em;
+  color:rgb(90, 90, 90);
+}
+.idle_status {
+  left: 10px;
+  top: 5px;
+  position: relative;
+  float:left;
+  z-index: 2;  
+  font-size: 1.6em;
+  color: green;
+}
+/* del-emp-cmd tooltiptest */
+span.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(80, 80, 80, 0.692);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+span:hover .tooltiptext {
+  visibility: visible;
+}
+.chosen-container{
+  width: 100% !important;
+  color: rgb(58, 58, 58);
+}
+
+/* Switch button */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.button-switch {
+  font-size: 0.8em;
+  height: 1em;
+  margin: 0.8em;
+  position: relative;
+  width: 2.5em;
+}
+.button-switch .lbl-off, .button-switch .lbl-on {
+  cursor: pointer;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 1em;
+  position: absolute;
+  top: 0.3em;
+  transition: opacity 0.25s ease-out 0.1s;
+  text-transform: uppercase;
+}
+.button-switch .lbl-off {
+  right: -1.3em;
+}
+.button-switch .lbl-on {
+  color: #fefefe;
+  opacity: 0;
+  left: 0.4375em;
+}
+.button-switch .switch {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 0;
+  font-size: 1em;
+  left: 0;
+  line-height: 0;
+  outline: none;
+  position: absolute;
+  top: 0;
+  width: 0;
+}
+.button-switch .switch:before, .button-switch .switch:after {
+  content: '';
+  font-size: 1em;
+  position: absolute;
+}
+.button-switch .switch:before {
+  border-radius: 1.25em;
+  background: #bdc3c7;
+  height: 1.875em;
+  left: -0.25em;
+  top: -0.1875em;
+  transition: background-color 0.25s ease-out 0.1s;
+  width: 4.5em;
+}
+.button-switch .switch:after {
+  box-shadow: 0 0.0625em 0.375em 0 #666;
+  border-radius: 50%;
+  background: #fefefe;
+  height: 1.5em;
+  transform: translate(0, 0);
+  transition: transform 0.25s ease-out 0.1s;
+  width: 1.5em;
+}
+.button-switch .switch:checked:after {
+  transform: translate(2.5em, 0);
+}
+.button-switch .switch:checked ~ .lbl-off {
+  opacity: 0;
+}
+.button-switch .switch:checked ~ .lbl-on {
+  opacity: 1;
+}
+.button-switch .switch#switch-orange:checked:before {
+  background: #e67e22;
+}
+.button-switch .switch#switch-blue:checked:before {
+  background: #3498db;
+}
+/* 
+ */
+ .service_select{
+   width: 48%;
+   display: inline-block;
+ }

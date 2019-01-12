@@ -1,0 +1,14 @@
+{{#unless deleted}}
+{{#unless being_served}}
+    <tr class="cust_in">
+      <th scope="row"><button class='delete btn btn-danger' data-cust_id="{{id}}">X</button></th>
+      <td>{{customer}}</td>
+      <td>{{emp_name}}</td>
+      <td>{{services}}</td>      
+      <td>{{format_time start_time}}</td>
+      <td>{{format_time end_time}}</td>      
+      <td>{{bill}}</td>
+      <td>{{tip}}</td>                  
+    </tr>      
+{{/unless}}
+{{/unless}}		

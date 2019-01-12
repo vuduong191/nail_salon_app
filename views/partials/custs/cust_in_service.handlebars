@@ -1,0 +1,14 @@
+{{#unless deleted}}
+{{#if being_served}}
+    <tr class="cust_in">
+      <td scope="row"><button data-cust_id="{{id}}"  data-toggle="modal" data-target="#addPaymentModal" data-services="{{services}}" data-cust_name="{{customer}}" data-cust_phone="{{phone_number}}" data-emp_id="{{employee_id}}" class='completeService btn btn-primary'>✓</button></td>
+      <td scope="row"><button data-cust_id="{{id}}" data-cust_name="{{customer}}" data-cust_phone="{{phone_number}}"  data-emp_id="{{employee_id}}" class='addService btn btn-success'>+</button> </td>
+      <td scope="row"><button data-cust_id="{{id}}" data-cust_name="{{customer}}" data-cust_phone="{{phone_number}}"  data-emp_id="{{employee_id}}" data-turncount="{{turn_count}}" class='deleteService btn btn-danger'>X</button></td>     
+      <td>{{customer}}</td>
+      <td>{{emp_name}}</td>
+      <td>{{services}}</td>      
+      <td>{{format_time start_time}}</td>
+      <td class="tableTurnCount">{{turn_count}}</td>      
+    </tr>    
+{{/if}}
+{{/unless}}	

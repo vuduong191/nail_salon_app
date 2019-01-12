@@ -1,0 +1,130 @@
+<div class='container'>
+  <div class='row'>
+    <div class = 'col-sm-2 emp_list'>
+      <h2 class = "label_top">Employee List</h2>      
+      <div>
+        {{#each employees}}
+          {{#unless emp_deleted}}          
+            {{> employees/employee-block}}
+          {{/unless}}              
+        {{/each}}
+      </div>               
+    </div>
+    <div class = 'col-sm-10 dashboard'>
+      <h2 class = "label_top">Customers</h2>
+        <button type="button" data-toggle="modal" data-target="#addCustModal" class="btn btn-warning" id="add-new-cmd"><i class="fas fa-user-plus"></i> Add Customer</button>
+      <div class="cust_log_block">          
+        <p class = "label_top_1"><i class="fas fa-user-cog"></i> Customers in Service</p>
+        <table class="table table-striped in_service_table">
+          <colgroup>
+            <col  class="table_number1">
+            <col  class="table_number1">
+            <col  class="table_number1">
+            <col  class="table_number15">
+            <col  class="table_number15">          
+            <col  class="table_number2">
+            <col  class="table_number1">
+            <col  class="table_number1">            
+                   
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>                            
+              <th scope="col">Name</th>
+              <th scope="col">Employee</th>
+              <th scope="col">Services</th>
+              <th scope="col">Start</th>
+              <th scope="col">Turn</th>                                                                   
+            </tr>
+          </thead>
+          <tbody>
+            {{#each custs}}
+                {{> custs/cust_in_service}}
+            {{/each}}            
+          </tbody>
+        </table>                        
+      </div>                    
+    </div>     
+  </div>
+</div>
+<script src="/assets/js/main.js"></script>
+
+<!-- Modal: Add Customer(s)-->
+<div id="addCustModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"><strong>New Customer</strong></h2>
+        <form class="create-form">
+        <div class="form-group">
+          <input type="text" class="service_select form-control" required="required" id="cust_name" name="name" placeholder="Customer's name">
+          <input type="text" class="service_select form-control" id="phone_number_input" name="name" placeholder="Phone Number (Optional)">
+          <div class="row">
+            <div class="  col-sm-8">
+              <select data-placeholder="Choose a service.." class="chosen-select" id="service_select">
+                <option></option>
+                {{#each services}}
+                        {{> services/services}}
+                {{/each}}          
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <select data-placeholder="Choose turn count" required="required" class="chosen-select" id="turn_input">
+                <option></option>
+                <option value=0>0</option>
+                <option value=0.5>0.5</option>
+                <option value=1 selected="selected">1</option>
+                <option value=1.5>1.5</option>
+                <option value=2>2</option>
+                <option value=2.5>2.5</option>
+                <option value=3>3</option>                                
+              </select>            
+            </div>
+            </div>
+            <p>Notes:</p>
+            <input type="text" class="form-control service_select" id="note" name="name" placeholder="Insert note if any...">
+          </div>
+          <strong>Select an available employee to serve.</strong>
+            <select data-placeholder="Choose an employee.." class="chosen-select" id="emp_select">
+              {{#each employees}}
+                    {{#if enabled}}
+                      {{> employees/employee-avail}}
+                    {{/if}}
+              {{/each}}          
+            </select>
+          <br>
+          <button type="submit" class="btn btn-warning addCustomerBtn">Add Customer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="addPaymentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title" ><strong id="paymentModelCustID"></strong>: <strong id="paymentModalCust"></strong></h2>
+        <h6>Employee ID: <span id="paymentModalEmpID"></span></h6>
+        <form class="create-form">
+        <div class="form-group">
+          <input type="text" class="form-control" id="payment_services" name="name" tabindex="0" value="">          
+          <input type="text" class="form-control service_select" id="payment_bill" name="name" placeholder="Bill" tabindex="1">
+          <input type="text" class="form-control service_select" id="payment_owner_discount" name="name" placeholder="Owner's Discount" tabindex="2">                         
+          <input type="text" class="form-control service_select" id="payment_tip_card" name="name" placeholder="Tip on Card" tabindex="3">
+          <input type="text" class="form-control service_select" id="payment_tip_cash" name="name" placeholder="Tip with Cash" tabindex="4">                         
+          <input type="text" class="form-control" id="payment_note" name="name" placeholder="Insert note if any..." tabindex="5">
+        </div>
+        <button type="submit" class="btn btn-warning paymentCompleteSubmit" tabindex="6">Add Payment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

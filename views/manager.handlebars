@@ -1,0 +1,190 @@
+<div class='container'>
+  <div class='row'>
+    <div class = 'col-sm-4 emp_list'>
+      <h2 class = "label_top">Employee List</h2>      
+      <div>
+        {{#each employees}}
+          {{#unless emp_deleted}}          
+            {{> employees/employee-block}}
+          {{/unless}}              
+        {{/each}}
+
+      </div>
+      <h2 class = "label_top">Edit Employees</h2>
+      <div class="edit_emp_block">
+        <span><button type="button" data-toggle="modal" data-target="#del-emp-modal" class="btn btn-default" id="del-emp-cmd"><i class="fas fa-user-times"></i></button><span class="tooltiptext">Delete Employee(s)</span></span>
+        <span><button type="button" class="btn btn-default" id="reset-time-cmd"><i class="fas fa-stopwatch"></i></button><span class="tooltiptext">Reset Time</span></span>
+        <span><button type="button" data-toggle="modal" data-target="#add-emp-modal" class="btn btn-default" id="add-new-cmd"><i class="fas fa-user-plus"></i></button><span class="tooltiptext">Add New Employee</span></span>
+        <span><button type="button" data-toggle="modal" data-target="#update-emp-modal" class="btn btn-default" id="update-emp-cmd"><i class="fas fa-user-edit"></i></button><span class="tooltiptext">Update Employee's Info</span></span>
+        <span><button type="button" class="btn btn-default" id="reset-cust-cmd"><i class="fas fa-power-off"></i></button><span class="tooltiptext">Reset Customer Log</span></span>                                 
+      </div>
+               
+    </div>
+    <div class = 'col-sm-8 dashboard'>
+      <h2 class = "label_top">Log Book</h2>
+      <div class="cust_log_block">          
+        <p class = "label_top_1"><i class="fas fa-user-check"></i> Customer Log Book</p>
+        <table class="table table-striped log_book_table">
+          <colgroup>
+            <col  class="log_number1">
+            <col  class="log_number2">
+            <col  class="log_number2">
+            <col  class="log_number3">            
+            <col  class="log_number1">
+            <col  class="log_number1">          
+            <col  class="log_number1">
+            <col  class="log_number1">          
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Name</th>
+              <th scope="col">Employee</th>
+              <th scope="col">Services</th>
+              <th scope="col">Start</th>
+              <th scope="col">Finish</th>                                             
+              <th scope="col">Bill</th>
+              <th scope="col">Tip</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each custs}}
+                {{> custs/cust_hist}}
+            {{/each}}          
+          </tbody>
+        </table>
+        <p class = "label_top_1"><i class="fas fa-user-alt-slash"></i> Deleted Entries</p>
+        <table class="table table-striped del_table">
+          <colgroup>
+            <col  class="del_number1">         
+            <col  class="del_number2">
+            <col  class="del_number3">        
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col"></th>              
+              <th scope="col">Entry</th>
+              <th scope="col">Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each custs}}
+                {{> custs/cust_del}}
+            {{/each}}          
+          </tbody>
+        </table>                
+      </div>                    
+    </div>     
+  </div>
+</div>
+<!-- Modal: Delete Employee(s)-->
+<div id="del-emp-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"><strong>Delete Employee(s)</strong></h2>
+        <p>Select employee to delete</p>
+        <div class="chosen-container">
+          <select data-placeholder="Choose an employee.." class="chosen-select" multiple id="emp_del_select">
+            {{#each employees}}
+                  {{> employees/employee-avail}}
+            {{/each}}          
+          </select>
+        </div>  
+        <button type="button" class="btn btn-warning" id="emp_del_submit">Delete</button>                  
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal: Add New Employee(s)-->
+<div id="add-emp-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"><strong>Insert New Employee</strong></h2>
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" required="required" id="new_emp_name" name="name" placeholder="Employee Name">
+            <input type="text" class="form-control" required="required" id="new_emp_photo" name="name" placeholder="Photo">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-warning" id="add_emp_but">Add Employee</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal: Update Employee(s)' info-->
+<div id="update-emp-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"><strong>Update Employee</strong></h2>
+        <p>Select employee to update</p>
+        <div class="chosen-container">
+          <select data-placeholder="Choose an employee.." class="chosen-select" id="emp_update_select">
+            <option value=""></option>            
+            {{#each employees}}
+                  {{> employees/employee-avail}}
+            {{/each}}          
+          </select>
+        </div>
+        <form>
+          <div class="form-group">
+            <span class="modal-item">Name: </span><input type="text" class="form-control modal-input" required="required" id="modal-employee-name" name="name">
+            <br><span class="modal-item">Image: </span><input type="text" class="form-control modal-input" required="required" id="modal-employee-image" name="name">
+            <br><span class="modal-item">Last Activity Time: </span><input type="text" class="form-control modal-input" required="required" id="modal-last-act-time" name="name">  
+            <span class="modal-item">Enabled: </span>
+            <div class="button-switch">
+              <input type="checkbox" id="switch-orange" class="switch" />
+              <label for="switch-orange" class="lbl-off">Off</label>
+              <label for="switch-orange" class="lbl-on">On</label>
+            </div>
+            <span class="modal-item">Busy: </span>
+            <div class="button-switch">
+              <input type="checkbox" id="switch-blue" class="switch"/>
+              <label for="switch-blue" class="lbl-off">Off</label>
+              <label for="switch-blue" class="lbl-on">On</label>
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-warning" id="update-emp-btn">Update Employee's Info</button>
+        </form>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/assets/js/manager.js"></script>
+{{!-- <h2>Cats that are sleepy!</h2>
+
+<ul>
+  {{#each cats}}
+    {{#if sleepy}}
+      {{> cats/cat-block sleep=false}}
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a Cat</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="ca">Cat Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="slee">Sleepy?</label><br>
+    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
+    <input type="radio" name="sleepy" value="0"> Awake
+  </div>
+
+  <button type="submit">Add Cat</button>
+</form> --}}

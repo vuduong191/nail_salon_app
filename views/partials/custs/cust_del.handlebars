@@ -1,0 +1,7 @@
+{{#if deleted}}
+    <tr class="cust_in">
+      <th scope="row" value={{employee_id}}><button class='recover btn btn-success' data-cust_id="{{id}}">R</button></th>      
+      <td>{{customer}} | {{emp_name}} | {{services}} | {{format_time start_time}} | {{format_time end_time}} | {{bill}} | {{tip}}</td>
+      <td>{{del_reason}}</td>                  
+    </tr>      
+{{/if}}		

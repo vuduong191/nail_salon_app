@@ -1,0 +1,36 @@
+
+	{{#if enabled}}
+		{{#if (ifPositive busy) }}
+			<div class="emp_col emp_col_blue" id="emp_col_{{id}}" data-busy="{{busy}}">
+				<p><strong><span id="emp_col_emp_name_{{id}}">{{emp_name}} </span></strong><span id="emp_col_time_{{id}}">{{format_time last_activities}}</span></p>				
+				<div class="emp_photo_block">
+					<img id="emp_col_img_{{id}}" src="{{photo}}" class="emp_photo">
+				</div>
+				<div class="turn_block">
+					<strong id="turn_col_{{id}}">{{turn}}</strong>
+				</div>					
+			</div>
+		{{else}}
+			<div class="emp_col emp_col_green" id="emp_col_{{id}}" data-busy="{{busy}}">
+				<p><strong><span id="emp_col_emp_name_{{id}}">{{emp_name}} </span></strong><span id="emp_col_time_{{id}}">{{format_time last_activities}}</span></p>				
+				<div class="emp_photo_block">
+					<img id="emp_col_img_{{id}}" src="{{photo}}" class="emp_photo">
+				</div>
+				<div class="turn_block">
+					<strong id="turn_col_{{id}}">{{turn}}</strong>
+				</div>					
+			</div>
+		{{/if}}			
+	{{else}}
+			<div class="emp_col emp_col_gray" id="emp_col_{{id}}" data-busy="{{busy}}">
+				<p><strong><span id="emp_col_emp_name_{{id}}">{{emp_name}} </span></strong><span id="emp_col_time_{{id}}">{{format_time last_activities}}</span></p>				
+				<div class="emp_photo_block">
+					<img id="emp_col_img_{{id}}" src="{{photo}}" class="emp_photo">
+				</div>
+				<div class="turn_block">
+					<strong id="turn_col_{{id}}">{{turn}}</strong>
+				</div>				
+			</div>
+	{{/if}}
+			
+
