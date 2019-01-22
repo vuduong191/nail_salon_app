@@ -15,12 +15,32 @@ var burger = {
         orm.selectAll("services",function(res){
             cb(res);
         })
+    }, 
+    allWaitlist: function(cb){
+        orm.customerQuery("SELECT waitlist.cust_name AS cust_name, waitlist.phone_number AS phone_number, waitlist.check_in_time AS check_in_time, waitlist.appointment AS appointment, services.service_name AS service FROM waitlist_services LEFT JOIN waitlist ON waitlist_services.customer_id = waitlist.id LEFT JOIN services ON waitlist_services.service=services.id ORDER BY check_in_time ASC",function(res){
+            cb(res);
+        })
+    },   
+    insertOneWaitlistCust: function(vals, cb){
+        orm.insertOne("waitlist",["cust_name","phone_number","appointment"], vals, function(res){
+            cb(res);
+        })
+    },
+    insertOneWaitlistService: function(vals, cb){
+        orm.insertOne("waitlist_services",["customer_id","service"], vals, function(res){
+            cb(res);
+        })
     },    
+    maxIDWaitlist: function(cb){
+        orm.selectMax("waitlist","id", function(res){
+            cb(res);
+        })
+    },
     insertOneCust: function(vals, cb){
         orm.insertOne("in_service",["customer","employee_id","services","start_time", "phone_number", "turn_count"], vals, function(res){
             cb(res);
         })
-    },
+    },    
     insertOneEmp: function(vals, cb){
         orm.insertOne("employee",["emp_name","photo"], vals, function(res){
             cb(res);

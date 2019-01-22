@@ -1,0 +1,100 @@
+<div class='container'>
+  <div class='row'>
+    <button type="button" data-toggle="modal" data-target="#addWaitlistModal" class="btn btn-warning" id="add-new-cmd"><i class="fas fa-user-plus"></i> Sign In</button>
+  </div>
+  <div class='row currentWaitlist'>
+    <h2>Waitlist Customers</h2>
+      <table class="table table-striped waitlist_table">
+        <colgroup>
+          <col  class="waitlist_table_number1">      
+          <col  class="waitlist_table_number1">
+        </colgroup>
+
+        <thead>
+          <tr>                      
+            <th scope="col">Customer</th>
+            <th scope="col">Last Four Digits of Phone Number</th>                                                                  
+          </tr>
+        </thead>
+        <tbody>
+          {{#each waitlistCust}}
+              {{> waitlist/waitlistcust}}
+          {{/each}}            
+        </tbody>
+      </table>      
+
+  </div>
+</div>
+<div id="addWaitlistModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"><strong>Sign In</strong></h2>
+        <form class="create-form">
+        <div class="form-group">
+          <input type="text" class="service_select form-control" required="required" id="waitlist_cust_name" name="name" placeholder="Customer's name">
+          <input type="text" class="service_select form-control" id="waitlist_phone_number_input" name="name" placeholder="Phone Number (Optional)" maxlength="11">
+          <p>Appointment Customer?</p>
+          <select data-placeholder="Appointment Customer?" required="required" class="chosen-select" id="waitlist_appointment_input">
+            <option></option>
+            <option value="false" selected="selected">No, I am walk-in customer.</option>
+            <option value="true">Yes, I have an appointment</option>                             
+          </select>
+          <p>Please select services.This helps us proceed faster.</p>
+          <div id = "waitlistModalServices">
+            <div id="waitlist_service_select_1">    
+            <select data-placeholder="Choose a service.." class="chosen-select">
+              <option></option>
+              {{#each services}}
+                      {{> services/services}}
+              {{/each}}          
+            </select>
+            </div>
+            <div id="waitlist_service_select_2" style="display: none">    
+            <select data-placeholder="Choose a service.." class="chosen-select">
+              <option></option>
+              {{#each services}}
+                      {{> services/services}}
+              {{/each}}          
+            </select>
+            </div>
+            <div id="waitlist_service_select_3" style="display: none">    
+            <select data-placeholder="Choose a service.." class="chosen-select">
+              <option></option>
+              {{#each services}}
+                      {{> services/services}}
+              {{/each}}          
+            </select>
+            </div>
+
+            <div id="waitlist_service_select_4" style="display: none">    
+            <select data-placeholder="Choose a service.." class="chosen-select">
+              <option></option>
+              {{#each services}}
+                      {{> services/services}}
+              {{/each}}          
+            </select>
+            </div>  
+            <div id="waitlist_service_select_5" style="display: none">    
+            <select data-placeholder="Choose a service.." class="chosen-select">
+              <option></option>
+              {{#each services}}
+                      {{> services/services}}
+              {{/each}}          
+            </select>
+            </div>                                                        
+          <button class="btn btn-light" id="waitlistModalAddService"><i class="fas fa-plus-circle"></i> Add more services</button>                                                        
+          <br>
+          <button type="submit" class="btn btn-warning" id="CustSignInBtn">Sign In</button>
+          </div>          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/assets/js/waitlist.js"></script> 
+<script>
+
+</script>
+

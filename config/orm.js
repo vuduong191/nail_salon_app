@@ -39,6 +39,14 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
+  customerQuery: function(query, cb) {
+    connection.query(query, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },
   selectAll: function(tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
@@ -61,6 +69,16 @@ var orm = {
     var queryString = "DELETE FROM " + tableInput + " WHERE "+colInput+" IN (?)";
     console.log(queryString);
     connection.query(queryString, valueArray, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },
+  selectMax: function(tableInput,col,cb){
+    var queryString="SELECT MAX("+col+") AS max_"+col+" FROM "+tableInput;
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }

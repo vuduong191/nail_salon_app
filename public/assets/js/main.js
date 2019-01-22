@@ -19,12 +19,15 @@ $(function() {
     $("#paymentModalCust").text(custName)
   }
   // Force input in payment to be numeric
-  $("#payment_bill").blur(function(){
-    if(!/^-?\d*[.,]?\d{0,2}$/.test($(this).val().trim())){
-      alert("Only input number!");
-      $(this).focusin()      
-    }
-  });
+// function checkNumeric(el) {
+//     var notNumeric = !/^-?\d*[.,]?\d{0,2}$/.test(el.val().trim());
+//     if ( notNumeric&& el.val() !== previousValue) {
+//         alert("Must be number");
+//         el.focus();
+//         previousValue = el.val().trim();
+//     }
+// }
+
   $("#payment_tip_cash").blur(function(){
     if(!/^-?\d*[.,]?\d{0,2}$/.test($(this).val().trim())){
       alert("Only input number!");

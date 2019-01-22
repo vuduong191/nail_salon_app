@@ -12,11 +12,26 @@ router.get("/", function(req, res) {
         hbsObject.custs = data1;      
         burger.allService(function(data2){
           hbsObject.services=data2;
-          res.render("index", hbsObject);
+          burger.allWaitlist(function(data) {
+            hbsObject.waitlistCust= data
+            res.render("index", hbsObject);            
+          });          
         })
     })
   });
 });
+router.get("/waitlist", function(req, res) {
+  burger.allWaitlist(function(data) {
+    var hbsObject = {
+      waitlistCust: data
+    };
+    burger.allService(function(data2){
+      hbsObject.services=data2;    
+      res.render("waitlist", hbsObject);
+    });
+  })
+});
+
 router.get("/manager", function(req, res) {
   burger.allEmp(function(data) {
     var hbsObject = {
@@ -29,10 +44,33 @@ router.get("/manager", function(req, res) {
     })
   });
 });
+router.get("/api/maxIDWaitlistCust", function(req, res) {
+  console.log("server reached")
+  burger.maxIDWaitlist(function(data) {
+    res.json(data)})
+});
 
 router.post("/api/custs", function(req, res) {
   var newCust=req.body;
   burger.insertOneCust([newCust.name, newCust.employee_id, newCust.services, newCust.start_time, newCust.phone_number, newCust.turn_count], function(result) {});
+});
+router.post("/api/newWaitlistCust", function(req, res) {
+  var newWaitlistCust=req.body;
+  burger.insertOneWaitlistCust([newWaitlistCust.cust_name, newWaitlistCust.phone_number, newWaitlistCust.appointment], function(result) {
+    if (result.affectedRows === 0) {
+      return res.status(404).end();
+    }
+    res.status(200).end()
+  });
+});
+router.post("/api/newWaitlistService", function(req, res) {
+  var newService=req.body;
+  burger.insertOneWaitlistService([newService.customer_id, newService.service], function(result) {
+    if (result.affectedRows === 0) {
+      return res.status(404).end();
+    }
+    res.status(200).end()
+  });
 });
 router.post("/api/newemp", function(req, res) {
   var newEmp=req.body.newEmp;

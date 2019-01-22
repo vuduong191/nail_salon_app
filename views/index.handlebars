@@ -11,8 +11,40 @@
       </div>               
     </div>
     <div class = 'col-sm-10 dashboard'>
+      <h2 class= "label_top">Waitlist</h2>
+      <div class="waitlist_block">
+        <table class="table table-striped index_waitlist_table">
+          <colgroup>
+            <col  class="table_number1">
+            <col  class="table_number1">
+            <col  class="table_number2">
+            <col  class="table_number2">
+            <col  class="table_number1">
+            <col  class="table_number1"> 
+            <col  class="table_number2">        
+                   
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>              
+              <th scope="col">Name</th>
+              <th scope="col">Phone #</th>                            
+              <th scope="col">Time</th>
+              <th scope="col">App</th>
+              <th scope="col">Services</th>                                                             
+            </tr>
+          </thead>
+          <tbody>
+            {{#each waitlistCust}}
+                {{> waitlist/waitlistcustindex}}
+            {{/each}}            
+          </tbody>
+        </table>           
+      </div>
       <h2 class = "label_top">Customers</h2>
-        <button type="button" data-toggle="modal" data-target="#addCustModal" class="btn btn-warning" id="add-new-cmd"><i class="fas fa-user-plus"></i> Add Customer</button>
+      <button type="button" data-toggle="modal" data-target="#addCustModal" class="btn btn-warning" id="add-new-cmd"><i class="fas fa-user-plus"></i> Add Customer</button>
       <div class="cust_log_block">          
         <p class = "label_top_1"><i class="fas fa-user-cog"></i> Customers in Service</p>
         <table class="table table-striped in_service_table">
@@ -114,10 +146,10 @@
         <form class="create-form">
         <div class="form-group">
           <input type="text" class="form-control" id="payment_services" name="name" tabindex="0" value="">          
-          <input type="text" class="form-control service_select" id="payment_bill" name="name" placeholder="Bill" tabindex="1">
-          <input type="text" class="form-control service_select" id="payment_owner_discount" name="name" placeholder="Owner's Discount" tabindex="2">                         
-          <input type="text" class="form-control service_select" id="payment_tip_card" name="name" placeholder="Tip on Card" tabindex="3">
-          <input type="text" class="form-control service_select" id="payment_tip_cash" name="name" placeholder="Tip with Cash" tabindex="4">                         
+          <input type="text" class="form-control service_select" id="payment_bill" name="name" placeholder="Bill" tabindex="1" maxlength="4" onblur="checkNumeric(this)">
+          <input type="text" class="form-control service_select" id="payment_owner_discount" name="name" placeholder="Owner's Discount" tabindex="2" maxlength="4" onblur="checkNumeric(this)">                         
+          <input type="text" class="form-control service_select" id="payment_tip_card" name="name" placeholder="Tip on Card" tabindex="3" maxlength="4" onblur="checkNumeric(this)">
+          <input type="text" class="form-control service_select" id="payment_tip_cash" name="name" placeholder="Tip with Cash" tabindex="4" maxlength="4" onblur="checkNumeric(this)">                         
           <input type="text" class="form-control" id="payment_note" name="name" placeholder="Insert note if any..." tabindex="5">
         </div>
         <button type="submit" class="btn btn-warning paymentCompleteSubmit" tabindex="6">Add Payment</button>
@@ -127,4 +159,18 @@
   </div>
 </div>
 
+<script>
+  var previousValue; 
+  function checkNumeric(el) {
+      var notNumeric = !(/^-?\d*[.,]?\d{0,2}$/.test(el.value));
+      console.log("Notnumeric: "+ notNumeric);
+      console.log("el.valu=previ: "+(el.value != previousValue))
+      
+      if ( notNumeric && (el.value != previousValue)) {
+          alert("Must be number. Ex: 12 or 12.1 or 12.41");
+          el.focus();
+          previousValue = el.value;
+      }
+  }
+</script>
 

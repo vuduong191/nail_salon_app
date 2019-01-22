@@ -6,6 +6,12 @@ var register = function (Handlebars) {
         },
         ifPositive: function (number) {
             return (number>0);
+        },
+        fourdigit: function(text) {
+            if(text==""){return ""} 
+            else{
+                return "..."+text.slice(-4);
+            }
         }
     };
 
